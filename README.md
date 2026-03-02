@@ -78,6 +78,57 @@
 
 ---
 
+## 💼 Experience
+
+**🔐 Nihon Cyber Defence — SOC Analyst, Researcher & Pentester** `2025–26`
+- Monitored and analysed security events using Graylog SIEM to identify potential threats
+- Deep dive into high priority incidents and preparation of incident reports with Root Cause Analysis
+- - Developed, implemented and maintained security policies, procedures and plans
+  - - Provided guidance and support to Level 1 analysts on complex security incidents
+    - - Experience in Blue Team defense and Purple Team collaboration
+      - - Managed Business-As-Usual activities: Weekly, Daily and Monthly reports
+        - - IT audits and risk assessments using NIST, ISO 27001, and COBIT frameworks
+         
+          - **🛡️ Cyber Security Intern — Redynox Academy** `Aug 2023`
+          - - Researched network threats like viruses and phishing
+            - - Set up firewalls and Wi-Fi encryption (WPA2/WPA3)
+              - - Analyzed network traffic using Wireshark
+                - - Scanned web applications for vulnerabilities with OWASP ZAP
+                  - - Found and tested flaws like SQL Injection, XSS, and CSRF
+                   
+                    - **💻 Computer Operator — Goyal Dadra and Company Pvt Ltd, Jaipur** `2016`
+                    - - Generated daily Excel reports on system security and vulnerabilities
+                      - - Managed DMS and Windows Administrator tasks
+                       
+                        - **🔍 Security Analyst — SSRV Filtration Pvt Ltd, Jaipur** `2011`
+                        - - Improved filtration efficiency by 20% through targeted security strategies
+                          - - Conducted penetration tests to identify and mitigate system vulnerabilities
+                           
+                            - ---
+
+                            ## 🎓 Education
+
+                            | Degree | Institute | Year |
+                            |---|---|---|
+                            | OSCP+ (Pursuing) | OffSec | 2025 |
+                            | Post Graduate Diploma in Computer Applications (PGDCA) | Pratap University | 2009 |
+                            | Electrical Engineering | Maharishi Arvind College of Engineering | 2009 |
+                            | Senior Secondary | Kendriya Vidyalaya Sangathan, Sikar | 2009 |
+
+                            ---
+
+                            ## 🏆 Achievements & Awards
+
+                            - 🥇 **Operation Deep Breach: Infiltrate & Escalate** — EC-Council (Apr 2025)
+                            - - 🥇 **RansomWar: Digital Hostage** — EC-Council (Mar 2025)
+                              - - 🏫 Cyber Security Workshop — TheTechUnique Academy (2025)
+                                - - 🏐 Kendriya Vidyalaya Sangathan National Volleyball Camp (2009–2011)
+                                  - - 🏅 Rajasthan State Sports Council, Jaipur (2008)
+                                    - - 🌿 The Green Olympiad (2007)
+                                      - - 📐 Math Aptitude Test (2007)
+                                       
+                                        - ---
+
 <div align="center">
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:e94560,50:16213e,100:1a1a2e&height=100&section=footer" width="100%"/>
