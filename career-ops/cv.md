@@ -8,7 +8,7 @@
 
 ## Professional Summary
 
-Cybersecurity professional with 5+ years of experience in SOC operations, incident response, penetration testing, and vulnerability management. Proven expertise in SIEM monitoring (Graylog, Splunk), threat analysis, and security policy development. CEH certified with hands-on experience in Kali Linux, Metasploit, Burp Suite, and OSINT frameworks. Strong knowledge of compliance frameworks including NIST CSF, ISO 27001, and COBIT. Adept at root cause analysis, incident reporting, and cross-team collaboration. Currently pursuing OSCP to deepen offensive security skills.
+Cybersecurity professional with 5+ years of experience in SOC operations, incident response, penetration testing, and vulnerability management. Proven expertise in SIEM monitoring (Graylog, Splunk), threat analysis, and security policy development. Hands-on experience with Kali Linux, Metasploit, Burp Suite, and OSINT frameworks. Strong knowledge of compliance frameworks including NIST CSF, ISO 27001, and COBIT. Adept at root cause analysis, incident reporting, and cross-team collaboration. Currently pursuing OSCP to deepen offensive security skills.
 
 ## Work Experience
 
@@ -66,7 +66,6 @@ Jan 2019 – Jan 2021
 
 ## Certifications
 
-- Certified Ethical Hacker (CEH) — EC-Council (Jan 2025)
 - OSCP+ (OffSec) — Currently Pursuing (2025–26)
 - Google Cybersecurity Professional Certificate (2024)
 - Cybersecurity — Skill India Digital Hub (2025)

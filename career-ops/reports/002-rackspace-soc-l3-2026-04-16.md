@@ -47,7 +47,7 @@ At Nihon Cyber Defence, I led deep-dive investigations into critical security in
 
 My SIEM experience is grounded in **Graylog and Splunk**, and while I am actively building Microsoft Sentinel proficiency (targeting SC-200), my core competencies in alert triage, log analysis, and threat correlation transfer directly across SIEM platforms. I have scripting experience in **Bash and PowerShell** and a strong foundation in network and endpoint security from my penetration testing work using Kali Linux, Metasploit, and Burp Suite.
 
-I hold a **CEH certification (EC-Council, 2025)** and am currently pursuing **OSCP**, giving me an attacker's perspective that makes me a more effective L3 analyst.
+I hold a **Google Cybersecurity Professional Certificate (2024)** and am currently pursuing **OSCP**, giving me an attacker's perspective that makes me a more effective L3 analyst.
 
 I am excited by Rackspace's risk-based, threat-informed security operations model and would welcome the chance to contribute.
 
