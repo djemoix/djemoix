@@ -1,0 +1,77 @@
+[
+  {
+    "company": "Sequretek",
+    "email": "hr@sequretek.com",
+    "role": "SOC Analyst"
+  },
+  {
+    "company": "Payatu",
+    "email": "info@payatu.com",
+    "role": "Security Consultant / Penetration Tester"
+  },
+  {
+    "company": "Craw Security",
+    "email": "training@craw.in",
+    "role": "Security Analyst / SOC Analyst"
+  },
+  {
+    "company": "Kratikal Tech",
+    "email": "hr@kratikal.com",
+    "role": "Security Analyst"
+  },
+  {
+    "company": "Innefu Labs",
+    "email": "hr@innefu.com",
+    "role": "Security Analyst / SOC Analyst"
+  },
+  {
+    "company": "CODEC Networks",
+    "email": "hr@codecnetworks.com",
+    "role": "Security Analyst / SOC Analyst"
+  },
+  {
+    "company": "iSECURION",
+    "email": "careers@isecurion.com",
+    "role": "Security Analyst / Penetration Tester"
+  },
+  {
+    "company": "Aujas Cybersecurity",
+    "email": "careers@aujas.com",
+    "role": "SOC Analyst"
+  },
+  {
+    "company": "CyberOps",
+    "email": "hr@cyberops.in",
+    "role": "Security Analyst / SOC Analyst"
+  },
+  {
+    "company": "Suma Soft",
+    "email": "careers@sumasoft.com",
+    "role": "Security Analyst"
+  },
+  {
+    "company": "Lucideus (SAFE Security)",
+    "email": "careers@safe.security",
+    "role": "Security Analyst"
+  },
+  {
+    "company": "Technisanct",
+    "email": "hr@technisanct.com",
+    "role": "Threat Intelligence Analyst / SOC Analyst"
+  },
+  {
+    "company": "CrowdStrike India",
+    "email": "india.recruiting@crowdstrike.com",
+    "role": "Security Engineer / SOC Analyst"
+  },
+  {
+    "company": "Rezilyens",
+    "email": "careers@rezilyens.com",
+    "role": "SOC Analyst / Security Analyst"
+  },
+  {
+    "company": "TAC Security",
+    "email": "hr@tacsecurity.com",
+    "role": "Penetration Tester / Security Analyst"
+  }
+]
