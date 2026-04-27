@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --color-surface-900: #0a0f1e;
+  --color-surface-800: #0f172a;
+  --color-surface-700: #1e293b;
+  --color-gold: #f59e0b;
+}
+
+body {
+  background-color: var(--color-surface-900);
+  color: #f8fafc;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* custom scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #0f172a; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+/* card glow on hover */
+.card-hover {
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.card-hover:hover {
+  box-shadow: 0 0 0 1px rgba(245,158,11,0.25), 0 8px 32px rgba(0,0,0,0.4);
+  transform: translateY(-2px);
+}
