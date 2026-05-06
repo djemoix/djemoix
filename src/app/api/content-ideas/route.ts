@@ -1,9 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import type { Reel } from '@/lib/types'
 
+const NVIDIA_BASE = 'https://integrate.api.nvidia.com/v1'
+const NVIDIA_MODEL = 'meta/llama-3.1-70b-instruct'
+
 export async function POST(req: NextRequest) {
-  if (!process.env.OPENAI_API_KEY) {
-    return NextResponse.json({ error: 'OPENAI_API_KEY not set' }, { status: 500 })
+  if (!process.env.NVIDIA_API_KEY) {
+    return NextResponse.json({ error: 'NVIDIA_API_KEY not set in .env.local' }, { status: 500 })
   }
 
   const { myReels, competitorReels }: { myReels: Reel[]; competitorReels: Record<string, Reel[]> } =
@@ -63,14 +66,14 @@ Based on this data, provide:
 Keep it sharp, specific, and actionable. No fluff. Reference specific view counts where relevant.`
 
   try {
-    const res = await fetch('https://api.openai.com/v1/chat/completions', {
+    const res = await fetch(`${NVIDIA_BASE}/chat/completions`, {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        Authorization: `Bearer ${process.env.NVIDIA_API_KEY}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'gpt-4o-mini',
+        model: NVIDIA_MODEL,
         messages: [{ role: 'user', content: prompt }],
         max_tokens: 1500,
         temperature: 0.7,
@@ -78,7 +81,7 @@ Keep it sharp, specific, and actionable. No fluff. Reference specific view count
       signal: AbortSignal.timeout(60_000),
     })
 
-    if (!res.ok) throw new Error(`OpenAI error: ${await res.text()}`)
+    if (!res.ok) throw new Error(`NVIDIA API error: ${await res.text()}`)
 
     const data = await res.json()
     const ideas = data.choices[0].message.content as string
