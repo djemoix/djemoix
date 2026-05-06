@@ -47,7 +47,7 @@ interface Props {
   myUsername?: string
 }
 
-export default function ComparisonView({ myReels, competitors, myUsername = 'manish_aii' }: Props) {
+export default function ComparisonView({ myReels, competitors, myUsername = 'manishai444' }: Props) {
   const allAccounts = [
     { username: myUsername, reels: myReels, isMe: true },
     ...Object.entries(competitors).map(([username, reels]) => ({ username, reels, isMe: false })),

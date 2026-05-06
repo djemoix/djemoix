@@ -18,7 +18,7 @@ type Tab = 'mine' | 'competitors' | 'compare' | 'ideas'
 type ScrapeState = 'idle' | 'starting' | 'polling' | 'fetching' | 'done' | 'error'
 type PerfFilter = 'all' | 'top' | 'mid' | 'low'
 
-const MY_URL = 'https://www.instagram.com/manish_aii/'
+const MY_URL = 'https://www.instagram.com/manishai444/'
 
 async function pollStatus(runId: string): Promise<string> {
   const res = await fetch(`/api/scrape-status?runId=${runId}`)
@@ -259,7 +259,7 @@ export default function Dashboard() {
             </div>
             <div>
               <h1 className="text-base font-bold text-white tracking-tight">Content Dashboard</h1>
-              <p className="text-xs text-slate-500">@manish_aii</p>
+              <p className="text-xs text-slate-500">@manishai444</p>
             </div>
           </div>
           <nav className="flex items-center gap-1 bg-slate-800/60 rounded-xl p-1">
@@ -289,7 +289,7 @@ export default function Dashboard() {
               <div>
                 <h2 className="text-xl font-bold text-white">My Reels</h2>
                 <div className="flex items-center gap-2 mt-0.5">
-                  <p className="text-slate-500 text-sm">Last 30 days · @manish_aii</p>
+                  <p className="text-slate-500 text-sm">Last 30 days · @manishai444</p>
                   {myLastSynced && (
                     <span className="flex items-center gap-1 text-xs text-slate-600">
                       <Clock className="w-3 h-3" /> {timeAgo(myLastSynced)}

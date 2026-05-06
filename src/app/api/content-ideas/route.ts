@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
 
   const prompt = `You are a world-class Instagram content strategist.
 
-MY ACCOUNT: @manish_aii
+MY ACCOUNT: @manishai444
 
 TOP PERFORMING REELS (by views):
 ${myTopReels || '(no data yet)'}
