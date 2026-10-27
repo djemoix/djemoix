@@ -27,6 +27,10 @@ modes/_profile.md
 node_modules/
 bun.lock
 
+# Credentials — NEVER commit
+.env
+email-log.json
+
 # OS
 .DS_Store
 *.mov
