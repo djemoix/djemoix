@@ -11,18 +11,18 @@
 <body>
   <div class="shell">
     <aside class="sidebar">
-      <a href="/" class="brand"><span class="brand-mark">S</span><span>SOC <b>COMMAND</b><small>CENTER / LOCAL MVP</small></span></a>
+      <a href="/" class="brand"><span class="brand-mark">S</span><span>SOC <b>COMMAND</b><small>CENTER / LOCAL v0.2</small></span></a>
       <div class="navlabel">WORKSPACE</div>
       <a class="navitem selected" href="#alerts">▣ <span>Overview & alerts</span></a>
       <a class="navitem" href="#cases">▤ <span>Incident cases</span></a>
       <a class="navitem" href="/docs" target="_blank" rel="noopener">⌘ <span>API docs ↗</span></a>
-      <div class="side-bottom"><div class="dot"></div> API connected<br><small>Local-first · Synthetic demo alerts</small></div>
+      <div class="side-bottom"><div class="dot"></div> API connected<br><small id="agent-state">Checking data source…</small></div>
     </aside>
     <main>
-      <header class="topbar"><div class="breadcrumb">SECURITY OPERATIONS <span>/</span> OVERVIEW</div><div class="pill"><span class="dot"></span> DEMO ENVIRONMENT</div></header>
+      <header class="topbar"><div class="breadcrumb">SECURITY OPERATIONS <span>/</span> OVERVIEW</div><div class="pill" id="mode-pill"><span class="dot"></span> CHECKING MODE</div></header>
       <section class="heading"><div><p class="eyebrow">THREAT OPERATIONS DASHBOARD</p><h1>SOC Command Center</h1><p class="muted">Monitor alerts, triage findings, and manage investigation cases.</p></div><button id="open-alert" class="btn primary">+ Create alert</button></section>
-      <div class="notice"><strong>DEMO DATA ONLY</strong><span>All seeded events are synthetic. No SIEM is connected, and this application has no authentication. Run on localhost only.</span></div>
-      <section class="metrics" aria-label="Dashboard statistics"><article class="metric"><span>Total alerts</span><strong id="count-total">—</strong><small>All observed events</small></article><article class="metric"><span>Active alerts</span><strong id="count-active">—</strong><small>New + investigating</small></article><article class="metric"><span>High priority</span><strong id="count-high">—</strong><small>Active critical + high</small></article><article class="metric"><span>Open cases</span><strong id="count-cases">—</strong><small>Under investigation</small></article></section>
+      <div class="notice"><strong id="notice-label">CHECKING DATA SOURCE</strong><span id="notice-text">Connecting to local SOC API…</span></div>
+      <section class="metrics" aria-label="Dashboard statistics"><article class="metric"><span>Total alerts</span><strong id="count-total">—</strong><small>Detected alerts (not raw log count)</small></article><article class="metric"><span>Active alerts</span><strong id="count-active">—</strong><small>New + investigating</small></article><article class="metric"><span>High priority</span><strong id="count-high">—</strong><small>Active critical + high</small></article><article class="metric"><span>Open cases</span><strong id="count-cases">—</strong><small>Under investigation</small></article></section>
       <div class="layout" id="alerts">
         <section class="panel alert-panel"><div class="panel-head"><div><h2>Security alerts</h2><p class="muted">Review and update alert status</p></div><button id="refresh" class="btn subtle">↻ Refresh</button></div>
           <div class="filters"><label class="visually-hidden" for="search">Search alerts</label><input id="search" placeholder="Search title, source, asset, IP..." autocomplete="off"><label class="visually-hidden" for="severity">Severity</label><select id="severity"><option value="">All severities</option><option>critical</option><option>high</option><option>medium</option><option>low</option></select><label class="visually-hidden" for="status">Status</label><select id="status"><option value="">All statuses</option><option>new</option><option>investigating</option><option>resolved</option><option value="false_positive">false_positive</option></select></div>
@@ -32,7 +32,7 @@
         <aside class="panel inspector"><div class="panel-head"><div><h2>Alert inspector</h2><p class="muted">Select an alert to investigate</p></div></div><div id="inspector-body" class="inspector-body"><div class="empty">Choose an alert from the table to view details and start a case.</div></div></aside>
       </div>
       <section id="cases" class="panel cases"><div class="panel-head"><div><h2>Investigation cases</h2><p class="muted">Track investigations and record analyst notes</p></div></div><div id="case-list" class="case-list"><div class="empty">No cases yet. Create a case from an alert.</div></div></section>
-      <footer>DJEMOIX / SOC COMMAND CENTER <span>V0.1 · AUTHORIZED LOCAL DEMO</span></footer>
+      <footer>DJEMOIX / SOC COMMAND CENTER <span>V0.2 · LOCAL / AUTHENTICATION NOT IMPLEMENTED</span></footer>
     </main>
   </div>
   <dialog id="new-alert-dialog"><form id="new-alert-form" class="dialog-form"><div class="dialog-header"><h2>Create a synthetic alert</h2><button type="button" class="close" data-close="new-alert-dialog" aria-label="Close">×</button></div><p class="muted">Manual entry is for lab/demo data. Do not paste confidential logs.</p><label>Title<input name="title" required minlength="3" maxlength="180" placeholder="e.g. Unusual authentication spike"></label><div class="two"><label>Source<input name="source" required minlength="2" maxlength="80" placeholder="Windows Security"></label><label>Severity<select name="severity"><option value="medium">Medium</option><option value="low">Low</option><option value="high">High</option><option value="critical">Critical</option></select></label></div><div class="two"><label>Asset<input name="asset" maxlength="120" placeholder="LAB-WS-01"></label><label>Source IP<input name="src_ip" maxlength="60" placeholder="192.0.2.10"></label></div><label>Investigation context<textarea name="details" maxlength="2000" rows="3"></textarea></label><button class="btn primary" type="submit">Save alert</button></form></dialog>

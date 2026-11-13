@@ -1,6 +1,6 @@
 'use strict';
 const $ = (selector) => document.querySelector(selector);
-const state = { alerts: [], cases: [], selected: null };
+const state = { alerts: [], cases: [], selected: null, mode: "demo" };
 const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt = (value) => value ? new Date(value).toLocaleString(undefined,{dateStyle:'medium',timeStyle:'short'}) : '—';
 const badge = (value) => `<span class="badge ${esc(value)}">${esc(String(value).replaceAll('_',' '))}</span>`;
@@ -17,16 +17,29 @@ async function refresh(){
     if($('#severity').value) params.set('severity',$('#severity').value);
     if($('#status').value) params.set('status',$('#status').value);
     if($('#search').value.trim()) params.set('q',$('#search').value.trim());
-    const [summary,alerts,cases]=await Promise.all([
+    const [health,telemetry,summary,alerts,cases]=await Promise.all([
+      request('/api/health'),request('/api/telemetry'),
       request('/api/summary'),request('/api/alerts?'+params),request('/api/incidents')
     ]);
-    state.alerts=alerts; state.cases=cases;
+    state.alerts=alerts; state.cases=cases; state.mode=health.mode;
+    updateSourceStatus(health,telemetry);
     $('#count-total').textContent=summary.total_alerts;
     $('#count-active').textContent=summary.active_alerts;
     $('#count-high').textContent=summary.high_priority;
     $('#count-cases').textContent=summary.open_cases;
     renderAlerts(); renderCases(); renderInspector();
   }catch(err){toast(err.message,true);}
+}
+function updateSourceStatus(health,telemetry){
+  const live=health.mode==='live';
+  const active=telemetry.agents.filter(a=>a.online);
+  $('#mode-pill').textContent=live?(active.length?'LIVE LINUX · AGENT ONLINE':'LIVE LINUX · AGENT OFFLINE'):'DEMO ENVIRONMENT';
+  $('#notice-label').textContent=live?'REAL LOCAL JOURNAL TELEMETRY':'DEMO DATA ONLY';
+  $('#notice-text').textContent=live?
+    `${telemetry.events_24h} normalized Linux auth events in the last 24h; ${active.length} agent(s) online. Alert rules require repeated failures. Dashboard/analyst APIs have no login: localhost only.`:
+    'Synthetic examples only. No SIEM/EDR is connected. Select live mode and run the Linux agent to ingest real journald auth events.';
+  $('#agent-state').textContent=live?`${active.length}/${telemetry.agents.length} agents online · ${telemetry.events_24h} auth events / 24h`:'Local-first · Synthetic demo alerts';
+  $('#open-alert').hidden=live;
 }
 function renderAlerts(){
   $('#alert-rows').innerHTML=state.alerts.length?state.alerts.map(a=>`<tr data-id="${a.id}" tabindex="0" class="${a.id===state.selected?'active':''}" aria-label="Inspect alert ${a.id}"><td><strong>${esc(a.title)}</strong><small>${esc(a.source)} · #${a.id}</small></td><td>${badge(a.severity)}</td><td>${badge(a.status)}</td><td>${esc(a.asset||'—')}</td><td>${esc(fmt(a.event_time))}</td></tr>`).join(''):'<tr><td colspan="5" class="empty">No matching alerts.</td></tr>';
@@ -36,7 +49,7 @@ function renderInspector(){
   const a=state.alerts.find(x=>x.id===state.selected);
   if(!a){$('#inspector-body').innerHTML='<div class="empty">Choose an alert from the table to view details and start a case.</div>';return;}
   const options=['new','investigating','resolved','false_positive'].map(s=>`<option value="${s}" ${s===a.status?'selected':''}>${s.replaceAll('_',' ')}</option>`).join('');
-  $('#inspector-body').innerHTML=`<p class="eyebrow">ALERT #${a.id}</p><h3 class="detail-title">${esc(a.title)}</h3>${badge(a.severity)} ${badge(a.status)}<div class="detail-row"><span class="key">Source</span><span>${esc(a.source)}</span></div><div class="detail-row"><span class="key">Asset</span><span>${esc(a.asset||'—')}</span></div><div class="detail-row"><span class="key">Source IP</span><span>${esc(a.src_ip||'—')}</span></div><div class="detail-row"><span class="key">Occurred</span><span>${esc(fmt(a.event_time))}</span></div><div class="detail-row"><span class="key">Case ID</span><span>${a.incident_id?'#'+a.incident_id:'Not assigned'}</span></div><p class="eyebrow" style="margin-top:20px">INVESTIGATION CONTEXT</p><p class="detail-text">${esc(a.details||'No context recorded')}</p><div class="inspector-actions"><label class="visually-hidden" for="new-alert-status">Change alert status</label><select id="new-alert-status">${options}</select><button class="btn subtle" id="save-alert-status">Update alert status</button><button class="btn primary" id="start-case" ${a.incident_id?'disabled':''}>${a.incident_id?'Already linked to a case':'+ Start investigation'}</button></div>`;
+  $('#inspector-body').innerHTML=`<p class="eyebrow">ALERT #${a.id}</p><h3 class="detail-title">${esc(a.title)}</h3>${badge(a.severity)} ${badge(a.status)}<div class="detail-row"><span class="key">Origin</span><span>${esc(a.origin||'demo')}</span></div><div class="detail-row"><span class="key">Source</span><span>${esc(a.source)}</span></div><div class="detail-row"><span class="key">Asset</span><span>${esc(a.asset||'—')}</span></div><div class="detail-row"><span class="key">Source IP</span><span>${esc(a.src_ip||'—')}</span></div><div class="detail-row"><span class="key">Occurred</span><span>${esc(fmt(a.event_time))}</span></div><div class="detail-row"><span class="key">Case ID</span><span>${a.incident_id?'#'+a.incident_id:'Not assigned'}</span></div><p class="eyebrow" style="margin-top:20px">INVESTIGATION CONTEXT</p><p class="detail-text">${esc(a.details||'No context recorded')}</p><div class="inspector-actions"><label class="visually-hidden" for="new-alert-status">Change alert status</label><select id="new-alert-status">${options}</select><button class="btn subtle" id="save-alert-status">Update alert status</button><button class="btn primary" id="start-case" ${a.incident_id?'disabled':''}>${a.incident_id?'Already linked to a case':'+ Start investigation'}</button></div>`;
   $('#save-alert-status').addEventListener('click',async()=>{
     try{await request('/api/alerts/'+a.id,{method:'PATCH',body:JSON.stringify({status:$('#new-alert-status').value})});toast('Alert status updated');await refresh();}
     catch(err){toast(err.message,true);}
@@ -59,3 +72,4 @@ $('#case-form').addEventListener('submit',async e=>{e.preventDefault();const for
 let debounce;['search','severity','status'].forEach(id=>$('#'+id).addEventListener(id==='search'?'input':'change',()=>{clearTimeout(debounce);debounce=setTimeout(refresh,200);}));
 $('#refresh').addEventListener('click',refresh);
 refresh();
+setInterval(()=>{if(state.mode==='live' && document.visibilityState!=='hidden') refresh();},20000);
